@@ -123,17 +123,20 @@ public class Dungeons extends Activity implements OnClickListener,
         public void onBillingSupported(boolean supported, String type) {
             if (Consts.DEBUG) {
                 Log.i(TAG, "supported: " + supported);
+                Toast.makeText(getApplicationContext(), "billing supported: " + supported, Toast.LENGTH_LONG).show();
             }
             if (type == null || type.equals(Consts.ITEM_TYPE_INAPP)) {
                 if (supported) {
                     restoreDatabase();
                     mBuyButton.setEnabled(true);
                     mEditPayloadButton.setEnabled(true);
+                    Toast.makeText(getApplicationContext(), "set buttons enabled", Toast.LENGTH_LONG).show();
                 } else {
                     showDialog(DIALOG_BILLING_NOT_SUPPORTED_ID);
                 }
             } else if (type.equals(Consts.ITEM_TYPE_SUBSCRIPTION)) {
                 mCatalogAdapter.setSubscriptionsSupported(supported);
+                Toast.makeText(getApplicationContext(), "set subscription supported in adapter", Toast.LENGTH_LONG).show();
             } else {
                 showDialog(DIALOG_SUBSCRIPTIONS_NOT_SUPPORTED_ID);
             }
