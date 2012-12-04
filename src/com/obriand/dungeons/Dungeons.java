@@ -507,7 +507,7 @@ public class Dungeons extends Activity implements OnClickListener,
             if (mManagedType != Managed.SUBSCRIPTION &&
                     !mBillingService.requestPurchase(mSku, Consts.ITEM_TYPE_INAPP, mPayloadContents)) {
                 showDialog(DIALOG_BILLING_NOT_SUPPORTED_ID);
-            } else if (!mBillingService.requestPurchase(mSku, Consts.ITEM_TYPE_SUBSCRIPTION, mPayloadContents)) {
+            } else if (mManagedType == Managed.SUBSCRIPTION && !mBillingService.requestPurchase(mSku, Consts.ITEM_TYPE_SUBSCRIPTION, mPayloadContents)) {
                 // Note: mManagedType == Managed.SUBSCRIPTION
                 showDialog(DIALOG_SUBSCRIPTIONS_NOT_SUPPORTED_ID);
             }
